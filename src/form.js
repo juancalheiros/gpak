@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {TextField, Button, Divider} from '@material-ui/core';
+import {TextField, Button} from '@material-ui/core';
 
 
 const styles = theme => ({
@@ -99,7 +99,7 @@ const Form = props => {
         />
         
       </div>
-      <Divider className={classes.divider} />
+      <br/>
       <div>
         <div className={classes.container}>
           <TextField
@@ -165,7 +165,7 @@ const Form = props => {
           />
         </div>
       </div>
-      <Divider className={classes.divider} />
+      <br/>
       <div >
         <Button 
           variant="outlined"

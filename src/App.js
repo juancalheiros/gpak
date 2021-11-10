@@ -5,8 +5,8 @@ import GetGroups from "./getGroups";
 const App = () => {
   return (
     <>
-      <Form/>
-      {false && <GetGroups/>}
+      {true && <Form/>}
+      {true && <GetGroups/>}
     </>
   );
 }
