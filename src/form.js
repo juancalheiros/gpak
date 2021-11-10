@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {TextField, Button, Divider} from '@material-ui/core';
 
 
-
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -23,6 +22,47 @@ const styles = theme => ({
 const Form = props => {
   const { classes } = props;
 
+  const handleChangeClass = event => {
+    const {value} = event.target   
+  }
+
+  const handleChangeStudent = event => {
+    const {value} = event.target
+  }
+
+  const handleChangeGroups = event => {
+    const {value} = event.target  
+  }
+
+  const handleChangeHardskill1 = event => {
+    const {value} = event.target
+  }
+
+  const handleChangeHardskill2 = event => {
+    const {value} = event.target  
+  }
+
+  const handleChangeHardskill3 = event => {
+    const {value} = event.target 
+  }
+
+  const handleChangeWeightHardskill1 = event => {
+    const {value} = event.target
+  }
+
+  const handleChangeWeightHardskill2 = event => {
+    const {value} = event.target
+  }
+
+  const handleChangeWeightHardskill3 = event => {
+    const {value} = event.target
+  }
+
+  const handleChangeSend = event => {
+    const {value} = event.target
+  }
+  
+
   return (
     <>
       <div className={classes.container}>
@@ -34,6 +74,7 @@ const Form = props => {
           margin="normal"
           type="number"
           variant="outlined"
+          onChange={handleChangeClass}
         />
         <TextField
           label="Alunos"
@@ -43,6 +84,7 @@ const Form = props => {
           margin="normal"
           type="number"
           variant="outlined"
+          onChange={handleChangeStudent}
         />
 
         <TextField
@@ -53,6 +95,7 @@ const Form = props => {
           margin="normal"
           type="number"
           variant="outlined"
+          onChange={handleChangeGroups}
         />
         
       </div>
@@ -66,6 +109,7 @@ const Form = props => {
             margin="normal"
             type="text"
             variant="outlined"
+            onChange={handleChangeHardskill1}
           />
           <TextField
             label="Peso"
@@ -75,6 +119,7 @@ const Form = props => {
             margin="normal"
             type="number"
             variant="outlined"
+            onChange={handleChangeWeightHardskill1}
           />
         </div>
         <div className={classes.container}>
@@ -85,6 +130,7 @@ const Form = props => {
             margin="normal"
             type="text"
             variant="outlined"
+            onChange={handleChangeHardskill2}
           />
           <TextField
             label="Peso"
@@ -94,6 +140,7 @@ const Form = props => {
             margin="normal"
             type="number"
             variant="outlined"
+            onChange={handleChangeWeightHardskill2}
           />
         </div>
         <div className={classes.container}>
@@ -104,6 +151,7 @@ const Form = props => {
             margin="normal"
             type="text"
             variant="outlined"
+            onChange={handleChangeHardskill3}
           />
           <TextField
             label="Peso"
@@ -113,12 +161,16 @@ const Form = props => {
             margin="normal"
             type="number"
             variant="outlined"
+            onChange={handleChangeWeightHardskill3}
           />
         </div>
       </div>
       <Divider className={classes.divider} />
       <div >
-        <Button variant="outlined" >
+        <Button 
+          variant="outlined"
+          onClick={handleChangeSend}
+        >
           Send
         </Button>
       </div>
