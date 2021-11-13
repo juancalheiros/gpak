@@ -79,7 +79,7 @@ const Form = props => {
     handleWeightHardskill3(value)
   }
 
-  const handleChangeSend = () => {
+  const handleClickLookGroups = () => {
     handleChangeEnableForm(false)
   }
   
@@ -200,9 +200,9 @@ const Form = props => {
       <div >
         <Button 
           variant="outlined"
-          onClick={handleChangeSend}
+          onClick={handleClickLookGroups}
         >
-          Send
+          Gerar turma e grupos
         </Button>
       </div>
     </>

@@ -1,6 +1,16 @@
 import React,{ useState } from "react";
+import { initializeApp } from "firebase/app";
 import Form from './form'
 import GetGroups from "./getGroups";
+
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyC9Zcmc1R-LkF0GM573KV6D3AHD0oXm9tQ",
+  authDomain: "projeto-integrador-ii-a5231.firebaseapp.com",
+  projectId: "projeto-integrador-ii-a5231",
+  storageBucket: "projeto-integrador-ii-a5231.appspot.com",
+  messagingSenderId: "392565545382",
+  appId: "1:392565545382:web:fc21cf10a30c78477b9767"
+};
 
 const App = () => {
 
@@ -47,7 +57,8 @@ const App = () => {
     setWeightHardskill3(value)
   }
 
-
+  // Initialize Firebase
+  const appFirebase = initializeApp(FIREBASE_CONFIG);
 
   return (
     <>

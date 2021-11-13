@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button } from '@material-ui/core';
 
-const GROUPS = [
+
+const LISTGROUPS = [
     [
         { name: 'Clarence Leach', grauHardSkill: '49.94' },
         { name: 'James Borselli', grauHardSkill: '28.39' },
@@ -30,20 +32,13 @@ const GetGroups = props => {
         weightHardskill2,
         weightHardskill3,
     } = props
-    
-    console.log("numberClass: ", numberClass)
-    console.log("numberMaxStudent: ", numberMaxStudent)
-    console.log("numberStudentToGroups: ", numberStudentToGroups)
-    console.log("hardskill1: ", hardskill1)
-    console.log("hardskill2: ", hardskill2)
-    console.log("hardskill3: ", hardskill3)
-    console.log("weightHardskill1: ", weightHardskill1)
-    console.log("weightHardskill2: ", weightHardskill2)
-    console.log("weightHardskill3: ", weightHardskill3)
 
-    const handleChange = () => {
-        
-        return GROUPS.map((group, index) => {
+    const [display, setDisplay] = useState(false)
+
+    const displayGroups = (numberClass) => {
+        // const resp = listGroups(156)
+        // console.log("resp===>>", resp)
+        return LISTGROUPS.map((group, index) => {
             return (
                 <>
                     <h3>  Grupo {index+1} </h3>
@@ -58,9 +53,42 @@ const GetGroups = props => {
         }) 
     }
 
+    const displayStudents = () => {
+        
+        return LISTGROUPS.map((group, index) => {
+            return (
+                <>
+                    {
+                        group.map(student => {
+                            return <p> name: {student.name} </p>
+                        })
+                    }
+                </>
+            )
+        }) 
+    }
+
+    const handleClick = () => {
+        setDisplay(true)
+    }
+
+    //gpask(numberClass, numberMaxStudent, numberStudentToGroups, [hardskill1, hardskill2, hardskill3],[weightHardskill1, weightHardskill2, weightHardskill3])
+    
     return (
         <div>
-            {handleChange()}
+            <h2> Turma {numberClass} </h2>
+
+            <h3> Alunos </h3>
+            {   displayStudents()   }
+            
+            <Button 
+                variant="outlined"
+                onClick={handleClick}
+            >
+                Ver grupos
+            </Button>
+
+            { display && displayGroups(numberClass)}
         </div>
     )
 }
