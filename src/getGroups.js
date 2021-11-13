@@ -18,7 +18,28 @@ const GROUPS = [
     ]
 ] 
 
-const GetGroups = () => {
+const GetGroups = props => {
+    const { 
+        numberClass, 
+        numberMaxStudent,
+        numberStudentToGroups,
+        hardskill1,
+        hardskill2,
+        hardskill3,
+        weightHardskill1,
+        weightHardskill2,
+        weightHardskill3,
+    } = props
+    
+    console.log("numberClass: ", numberClass)
+    console.log("numberMaxStudent: ", numberMaxStudent)
+    console.log("numberStudentToGroups: ", numberStudentToGroups)
+    console.log("hardskill1: ", hardskill1)
+    console.log("hardskill2: ", hardskill2)
+    console.log("hardskill3: ", hardskill3)
+    console.log("weightHardskill1: ", weightHardskill1)
+    console.log("weightHardskill2: ", weightHardskill2)
+    console.log("weightHardskill3: ", weightHardskill3)
 
     const handleChange = () => {
         

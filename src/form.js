@@ -20,46 +20,67 @@ const styles = theme => ({
 });
 
 const Form = props => {
-  const { classes } = props;
+  const { 
+    classes, 
+    handleChangeEnableForm,
+    handleNumberClass,
+    handleNumberMaxStudent,
+    handleNumberStudentToGroups,
+    handleHardskill1,
+    handleHardskill2,
+    handleHardskill3,
+    handleWeightHardskill1,
+    handleWeightHardskill2,
+    handleWeightHardskill3,
+  } = props;
 
   const handleChangeClass = event => {
-    const {value} = event.target   
+    const {value} = event.target 
+    handleNumberClass(value)  
   }
 
   const handleChangeStudent = event => {
     const {value} = event.target
+    handleNumberMaxStudent(value)
   }
 
   const handleChangeGroups = event => {
     const {value} = event.target  
+    handleNumberStudentToGroups(value)
   }
 
   const handleChangeHardskill1 = event => {
     const {value} = event.target
+    handleHardskill1(value)
   }
 
   const handleChangeHardskill2 = event => {
-    const {value} = event.target  
+    const {value} = event.target 
+    handleHardskill2(value) 
   }
 
   const handleChangeHardskill3 = event => {
     const {value} = event.target 
+    handleHardskill3(value)
   }
 
   const handleChangeWeightHardskill1 = event => {
     const {value} = event.target
+    handleWeightHardskill1(value)
   }
 
   const handleChangeWeightHardskill2 = event => {
     const {value} = event.target
+    handleWeightHardskill2(value)
   }
 
   const handleChangeWeightHardskill3 = event => {
     const {value} = event.target
+    handleWeightHardskill3(value)
   }
 
-  const handleChangeSend = event => {
-    const {value} = event.target
+  const handleChangeSend = () => {
+    handleChangeEnableForm(false)
   }
   
 
@@ -68,8 +89,9 @@ const Form = props => {
       <div className={classes.container}>
         <TextField
           label="Turma"
-          helperText="Numero da turma"
+          helperText="Numero da turma."
           id="number-classroom"
+          placeholder="151"
           className={classes.textField}
           margin="normal"
           type="number"
@@ -78,8 +100,9 @@ const Form = props => {
         />
         <TextField
           label="Alunos"
-          helperText="Numero da max de alunos"
+          helperText="Numero da max de alunos."
           id="number-max-turma"
+          placeholder="30"
           className={classes.textField}
           margin="normal"
           type="number"
@@ -89,8 +112,9 @@ const Form = props => {
 
         <TextField
           label="Grupos"
-          helperText="Numero de alunos por grupo"
+          helperText="Numero de alunos por grupo."
           id="number-groups-for-students"
+          placeholder="5"
           className={classes.textField}
           margin="normal"
           type="number"
@@ -105,6 +129,7 @@ const Form = props => {
           <TextField
             label="Hardskill 1"
             id="hardskill_1"
+            placeholder = "Golang"
             className={classes.textField}
             margin="normal"
             type="text"
@@ -115,6 +140,7 @@ const Form = props => {
             label="Peso"
             helperText="0-100"
             id="number-max-turma"
+            placeholder="30"
             className={classes.textField}
             margin="normal"
             type="number"
@@ -126,6 +152,7 @@ const Form = props => {
           <TextField
             label="Hardskill 2"
             id="hardskill_2"
+            placeholder = "Python"
             className={classes.textField}
             margin="normal"
             type="text"
@@ -135,6 +162,7 @@ const Form = props => {
           <TextField
             label="Peso"
             helperText="0-100"
+            placeholder="40"
             id="number-max-turma"
             className={classes.textField}
             margin="normal"
@@ -147,6 +175,8 @@ const Form = props => {
           <TextField
             label="Hardskill 3"
             id="hardskill_3"
+            placeholder="Node"
+           
             className={classes.textField}
             margin="normal"
             type="text"
@@ -155,6 +185,7 @@ const Form = props => {
           />
           <TextField
             label="Peso"
+            placeholder="30"
             helperText="0-100"
             id="number-max-turma"
             className={classes.textField}
