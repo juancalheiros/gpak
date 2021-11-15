@@ -40,5 +40,24 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCB0y65Q8LH9-bZkOvkE5EmFe2u8AMAmDA",
+        authDomain: "projeto-gpask.firebaseapp.com",
+        projectId: "projeto-gpask",
+        storageBucket: "projeto-gpask.appspot.com",
+        messagingSenderId: "172121785500",
+        appId: "1:172121785500:web:8845d148090a838aab9959"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>
