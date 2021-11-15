@@ -1,7 +1,9 @@
 import React,{ useState } from "react";
-import { initializeApp } from "firebase/app";
+
 import Form from './form'
+import Login from "./login/login";
 import GetGroups from "./getGroups";
+
 
 
 const App = () => {
@@ -16,6 +18,7 @@ const App = () => {
   const [weightHardskill1, setWeightHardskill1] = useState(30)
   const [weightHardskill2, setWeightHardskill2] = useState(40)
   const [weightHardskill3, setWeightHardskill3] = useState(30)
+  const [logged, setLogged] = useState(false)
 
   
   const handleChangeEnableForm = value => {
@@ -49,10 +52,15 @@ const App = () => {
     setWeightHardskill3(value)
   }
 
+  const handleLogin = value => {
+    setLogged(value)
+  }
 
   return (
     <>
-      {enableForm && 
+      {!logged && <Login handleLogin={handleLogin}/>}
+      
+      {logged && enableForm && 
         <Form 
           handleChangeEnableForm={handleChangeEnableForm}
           handleNumberClass={handleNumberClass}
@@ -66,7 +74,7 @@ const App = () => {
           handleWeightHardskill3={handleWeightHardskill3}
         />
       }
-      {!enableForm && 
+      {logged && !enableForm && 
         <GetGroups 
           numberClass={numberClass}
           numberMaxStudent={numberMaxStudent}
