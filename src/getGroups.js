@@ -44,7 +44,7 @@ const GetGroups = props => {
                     <h3>  Grupo {index+1} </h3>
                     {
                         group.map(student => {
-                            return <p> name: {student.name}, média Hardskill: {student.grauHardSkill} </p>
+                            return <p> nome: {student.name}, média Hardskill: {student.grauHardSkill} </p>
                         })
                     }
                     <br/>
@@ -60,7 +60,7 @@ const GetGroups = props => {
                 <>
                     {
                         group.map(student => {
-                            return <p> name: {student.name} </p>
+                            return <p> nome: {student.name} </p>
                         })
                     }
                 </>
