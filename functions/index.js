@@ -27,5 +27,3 @@ exports.gpaskMethodology = functions.https.onRequest((request, response) => {
 
     response.send(gpaskMethodology(numberClass, numberMaxStudent, hardskill, hardSkillWeight, numberStudentToGroups));
 });
-
-// curl -i -H "Content-Type:application/json" -XPOST http://localhost:5001/projeto-gpask/us-central1/gpaskMethodology -d '{"classNumber": 150, "qntdStudents": 9, "numberMembersInGroup": 3, "hardskill": ["API", "Lua", "Firebase"], "hardSkillWeight": [20, 40, 40]}'

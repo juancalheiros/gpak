@@ -2,24 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core';
 
 
-const LISTGROUPS = [
-    [
-        { name: 'Clarence Leach', grauHardSkill: '49.94' },
-        { name: 'James Borselli', grauHardSkill: '28.39' },
-        { name: "Bess O'connor", grauHardSkill: '48' }
-    ],
-    [
-        { name: 'Georgia Meijer', grauHardSkill: '45.93' },
-        { name: 'Florence Norris', grauHardSkill: '31.37' },
-        { name: 'Tommy Hirano', grauHardSkill: '42.32' }
-    ],
-    [
-        { name: 'Amanda Watts', grauHardSkill: '42.09' },
-        { name: 'Leila Peruzzi', grauHardSkill: '35.74' },
-        { name: 'Randy Clark', grauHardSkill: '37.44' }
-    ]
-] 
-
 const GetGroups = props => {
     const { 
         numberClass, 
@@ -34,12 +16,11 @@ const GetGroups = props => {
     } = props
 
     const [display, setDisplay] = useState(false)
-    const [response, setResponse] = useState(LISTGROUPS)
-
+    const [response, setResponse] = useState(false)
 
     useEffect(() => {
         const handleFetch = async () => {
-            const headers = new Headers({"content-type":"application/json"})
+            const headers = new Headers({"Content-Type": "application/json"})
             const cloudFunctions = "http://localhost:5001/projeto-gpask/us-central1/gpaskMethodology"
             const query = {
                 headers,
@@ -49,8 +30,7 @@ const GetGroups = props => {
                     numberMaxStudent, 
                     numberStudentToGroups,
                     hardskill: [hardskill1, hardskill2,hardskill3],
-                    hardSkillWeight: [weightHardskill1, weightHardskill2, weightHardskill3],
-                    
+                    hardSkillWeight: [weightHardskill1, weightHardskill2, weightHardskill3],   
                 })
             }
 
@@ -63,36 +43,43 @@ const GetGroups = props => {
 
     }, [])
 
-    const displayGroups = numberClass => {
+    const displayGroups = () => {
+        if (response){
+            return response.map((group, index) => {
+                return (
+                    <>
+                        <h3>  Grupo {index+1} </h3>
+                        {
+                            group.map(student => {
+                                return <p> nome: {student.name}, média Hardskill: {student.grauHardSkill} </p>
+                            })
+                        }
+                        <br/>
+                    </>
+                )
+            })
+        } 
 
-        return response.map((group, index) => {
-            return (
-                <>
-                    <h3>  Grupo {index+1} </h3>
-                    {
-                        group.map(student => {
-                            return <p> nome: {student.name}, média Hardskill: {student.grauHardSkill} </p>
-                        })
-                    }
-                    <br/>
-                </>
-            )
-        }) 
+        return
     }
 
     const displayStudents = () => {
+
+        if (response){
+            return response.map( group => {
+                return (
+                    <>
+                        {
+                            group.map(student => {
+                                return <p> nome: {student.name} </p>
+                            })
+                        }
+                    </>
+                )
+            }) 
+        }
         
-        return response.map((group, index) => {
-            return (
-                <>
-                    {
-                        group.map(student => {
-                            return <p> nome: {student.name} </p>
-                        })
-                    }
-                </>
-            )
-        }) 
+        return
     }
 
     const handleClick = () => {
@@ -114,7 +101,7 @@ const GetGroups = props => {
                 Ver grupos
             </Button>
 
-            { display &&  displayGroups(numberClass) }
+            { display &&  displayGroups() }
         </div>
     )
 }
