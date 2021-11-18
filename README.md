@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Projeto GPASK
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Intro
 
-In the project directory, you can run:
+Vamos nos imaginar numa turma, seja ela do trabalho ou universidade ou de um cursinho particular, nos deparamos com uma pergunta: como formamos grupos ? Quais as características que nos chamam atenção para nos sentirmos confortável para fazer um grupo de trabalho ou pesquisa ? chega a ser curioso quando pensamos a respeito, baseado nisso, propomos uma solução onde podemos formar grupo levando em conta as habilidades de hardskill de cada pessoa, levando em conta como trazer um equilíbrio para o grupo, com tantas pessoas com diferentes habilidades.
 
-### `yarn start`
+Para facilitar o processo de criação de grupos para trabalhos acadêmicos, será criado uma aplicação web que pudesse gerar uma turma com uma quantidade estipulada de alunos e que pudesse definir qual a quantidade de alunos por grupo, bem como quais hardskill cada aluno tem, como também o peso de cada hardskill.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Queremos levar como observação, a solução que propomos não leva em consideração diversos outros aspectos tais como: empatia, ambiente, experiência de vida e entre outros aspectos que fazem muita diferença quando conhecemos alguém presencialmente e que nesses casos fica difícil mensurar em números essas característica, baseado nisso, queremos reforçar que apresentaremos uma ideia em uma aplicação web de como formar grupo, na prática não poderemos garantir a qualidade de um grupo baseado na metodologia que será abordada.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Desenvolvimento
 
-### `yarn test`
+Teremos como primeira etapa da aplicação web o usuário fazer um login, após isso ele poderá configurar sua turma e grupos; O usuário pode definir o número da turma, a quantidade máxima de alunos, a quantidade de pessoas que um grupo de ter, pode definir 3 hardskill bem como o peso de cada hardskill. Com o intuito de testar a metodologia, gerando um Mock da turma, incluindo os alunos e sua lista de valores aleatórios de skills.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para começar o processo de aplicação da metodologia, o algoritmo fornecera o nível de hardskill para membro do corpo da turma. Seu nível será calculado através de uma média ponderada entre as notas e o peso de cada hardskill, o resultado será armazenado em um atributo chamado de “grau_hardskill”.
+Em seguida os membros serão ordenados em um array de acordo com seus níveis, do menor para o maior. Para esta ordenação será utilizado o Sistema de Distribuição Normal, onde a curva Gaussiana será capaz de gerar um padrão regular de skills. Todos os recursos e ferramentas necessários para a montagem do Sistema de Distribuição Normal serão previstos e utilizados no algoritmo.
 
-### `yarn build`
+A partir de um array ordenado, os alunos serão agrupados, sempre pegando o aluno de menor grau com o aluno de maior grau, o segundo aluno de menor grau com o segundo aluno de maior grau, o terceiro aluno de menor grau com o terceiro aluno de maior grau e assim por diante, ou seja, pegando os alunos que estão nos extremos opostos do array. Fazemos esse processo até que chegue no limite que foi definido pelo professor.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Dependencia
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- node >= 14.x
+- firebase >= 9.x
 
-### `yarn eject`
+## Inicialização Local
+No terminal, na raiz do projeto use: 
+### Setup
+- ```make setup```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Run Firebase
+- ```make run-firebase```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Teste metodologia GPASK
+ - ```make test-functions```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Deploy hosting
+```make deploy-firebase-hosting```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+Ao usar os comandos para run local, você poderá ver a aplicação nos endpoints: 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- App(hosting): http://localhost:5000
+- Cloud Functions: http://localhost:5001/projeto-gpask/us-central1/gpaskMethodology
+- Firestore: http://localhost:8080
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Arquitetura
+![](./architecture/arquitetura.png)
