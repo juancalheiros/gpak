@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from '@material-ui/core';
 
 
@@ -34,11 +34,38 @@ const GetGroups = props => {
     } = props
 
     const [display, setDisplay] = useState(false)
+    const [response, setResponse] = useState(LISTGROUPS)
 
-    const displayGroups = (numberClass) => {
-        // const resp = listGroups(156)
-        // console.log("resp===>>", resp)
-        return LISTGROUPS.map((group, index) => {
+
+    useEffect(() => {
+        const handleFetch = async () => {
+            const headers = new Headers({"content-type":"application/json"})
+            const cloudFunctions = "http://localhost:5001/projeto-gpask/us-central1/gpaskMethodology"
+            const query = {
+                headers,
+                method: 'POST',
+                body:JSON.stringify({
+                    numberClass, 
+                    numberMaxStudent, 
+                    numberStudentToGroups,
+                    hardskill: [hardskill1, hardskill2,hardskill3],
+                    hardSkillWeight: [weightHardskill1, weightHardskill2, weightHardskill3],
+                    
+                })
+            }
+
+            const resp = await fetch(cloudFunctions, query)
+            
+            setResponse(await resp.json())
+        }
+
+        handleFetch()
+
+    }, [])
+
+    const displayGroups = numberClass => {
+
+        return response.map((group, index) => {
             return (
                 <>
                     <h3>  Grupo {index+1} </h3>
@@ -55,7 +82,7 @@ const GetGroups = props => {
 
     const displayStudents = () => {
         
-        return LISTGROUPS.map((group, index) => {
+        return response.map((group, index) => {
             return (
                 <>
                     {
@@ -72,15 +99,14 @@ const GetGroups = props => {
         setDisplay(true)
     }
 
-    //gpask(numberClass, numberMaxStudent, numberStudentToGroups, [hardskill1, hardskill2, hardskill3],[weightHardskill1, weightHardskill2, weightHardskill3])
-    
+
     return (
         <div>
             <h2> Turma {numberClass} </h2>
 
             <h3> Alunos </h3>
-            {   displayStudents()   }
-            
+            { displayStudents() }
+
             <Button 
                 variant="outlined"
                 onClick={handleClick}
@@ -88,7 +114,7 @@ const GetGroups = props => {
                 Ver grupos
             </Button>
 
-            { display && displayGroups(numberClass)}
+            { display &&  displayGroups(numberClass) }
         </div>
     )
 }
